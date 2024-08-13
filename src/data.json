@@ -1,0 +1,36 @@
+[
+    {
+        "id":0,
+        "CategoryName" : "Category 1",
+        "Widgets":[
+            {
+                "id":0,
+                "name":"Widget name",
+                "text" :"Some random Widget text."
+            },
+            {
+                "id":1,
+                "name":"Widget name",
+                "text" :"Some random Widget text."
+            }
+        ]
+
+    },
+    {
+        "id":1,
+        "CategoryName" : "Category 2",
+        "Widgets":[
+            {
+                "id":0,
+                "name":"Widget name",
+                "text" :"Some random Widget text."
+            },
+            {
+                "id":1,
+                "name":"Widget name",
+                "text" :"Some random Widget text."
+            }
+        ]
+
+    }
+]

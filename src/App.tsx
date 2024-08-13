@@ -1,10 +1,11 @@
 
+import { Dashboard } from "./components/Dashboard"
 
 function App() {
 
   return (
     <>
-      <p className="text-3xl text-gray-500">Dashbaord</p>
+      <Dashboard />
     </>
   )
 }

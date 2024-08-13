@@ -72,13 +72,18 @@ const DashboardContent1 = () => {
         setWidgetsToremove([])
     }
 
+    const handleOpen =(id:number) =>{
+        setisOpen(true)
+        setActiveCategoryId(id)
+    }
+
     return ( 
-        <div className="bg-blue-50 py-8 px-10 flex flex-col gap-10 ">
+        <div className="bg-blue-50 py-8 px-5 md:px-10 flex flex-col gap-10 ">
             {
                 isOpen && (
                     <>
                         <div className="fixed inset-0 bg-black opacity-60" />
-                        <div className="fixed top-0 bottom-0 right-0 w-[35%] bg-white z-10">
+                        <div className="fixed top-0 bottom-0 right-0 w-[100%]  md:w-[50%] lg:w-[35%] bg-white z-10">
                             <div className="bg-blue-800 p-2 flex items-center justify-between">
                                 <p className="font-semibold text-[14px] text-white">Add widget</p>
                                 <RxCross2 onClick={() => setisOpen(false)} className="text-white cursor-pointer" />
@@ -144,7 +149,7 @@ const DashboardContent1 = () => {
             <div className="flex flex-col gap-5">
                 {
                     categoryData.map((category:CategoryType) => (
-                        <DashBoardCategory key={category.id} isOpen={isOpen} setisOpen={setisOpen} category={category} />
+                        <DashBoardCategory key={category.id} isOpen={isOpen} setisOpen={handleOpen} category={category} />
                     ))
                 }               
             </div>       

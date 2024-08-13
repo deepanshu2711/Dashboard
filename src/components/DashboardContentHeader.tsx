@@ -13,10 +13,10 @@ const DashboardContentHeader = () => {
                     <p className="text-[12px] text-gray-600 ">Add Widget</p>
                     <BiPlus />
                 </button>
-                <button className="flex items-center gap-2 rounded-md bg-white py-1 px-2 border border-gray-400">
+                <button className="hidden md:flex items-center gap-2 rounded-md bg-white py-1 px-2 border border-gray-400">
                     <TfiReload />
                 </button>
-                <button className="flex items-center gap-2 rounded-md bg-white py-1 px-2 border border-gray-400">
+                <button className="hidden md:flex items-center gap-2 rounded-md bg-white py-1 px-2 border border-gray-400">
                     <CgMoreVertical />
                 </button>
                 <button className="flex items-center gap-2 rounded-md bg-white py-1 px-2 border border-blue-700">

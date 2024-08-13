@@ -6,7 +6,7 @@ import Widget from "./Widget";
 interface DashBoardCategoryProps {
     category:CategoryType
     isOpen:boolean
-    setisOpen:(open:boolean) => void
+    setisOpen:(id:number) => void
 }
 
 const DashBoardCategory = ({category , isOpen , setisOpen} : DashBoardCategoryProps) => {
@@ -15,14 +15,14 @@ const DashBoardCategory = ({category , isOpen , setisOpen} : DashBoardCategoryPr
     return ( 
         <div>
             <p className="text-[14px] font-semibold">{category.CategoryName}</p>    
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {
                     category.Widgets.map((widget : WidgetType) => (
-                        <Widget widgetData={widget} isOpen={isOpen} setisOpen={setisOpen} />
+                        <Widget categoryId={category.id} widgetData={widget} isOpen={isOpen} setisOpen={setisOpen} />
                     ) )
                 }
                 {Array.from({ length: placeholders }, (_, index) => (
-                    <Widget key={`placeholder-${index}`} widgetData={null} isOpen={isOpen} setisOpen={setisOpen} />
+                    <Widget categoryId={category.id} key={`placeholder-${index}`} widgetData={null} isOpen={isOpen} setisOpen={setisOpen} />
                 ))}
             </div>
         </div>

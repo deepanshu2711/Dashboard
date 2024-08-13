@@ -6,9 +6,9 @@ import { WidgetType } from "../types";
 
 interface WidgetProps {
     widgetData:WidgetType | null,
-    isOpen:boolean,
+    isOpen?:boolean,
     setisOpen:(id:number) => void,
-    categoryId:number
+    categoryId?:number
 }
 
 const Widget = ({widgetData , setisOpen , categoryId} : WidgetProps) => {
@@ -21,7 +21,7 @@ const Widget = ({widgetData , setisOpen , categoryId} : WidgetProps) => {
                 <div className="flex items-center justify-center w-full h-full">
                     {
                         widgetData === null && (
-                            <div onClick={() => setisOpen(categoryId)} className=" cursor-pointer group gap-4 p-1 px-4 rounded-md hover:border-gray-900 border-gray-300 border flex items-center">
+                            <div onClick={() => setisOpen(categoryId || 0)} className=" cursor-pointer group gap-4 p-1 px-4 rounded-md hover:border-gray-900 border-gray-300 border flex items-center">
                             <BiPlus  className="text-gray-400 group-hover:text-black" />
                             <p className="font-semibold text-[13px] text-gray-400 group-hover:text-black">Add Widget</p>
                             </div>

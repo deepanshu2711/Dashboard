@@ -6,10 +6,11 @@ import Widget from "./Widget";
 interface DashBoardCategoryProps {
     category:CategoryType
     isOpen:boolean
-    setisOpen:(id:number) => void
+    setisOpen:(id:number) => void,
+    forSearch:boolean
 }
 
-const DashBoardCategory = ({category , isOpen , setisOpen} : DashBoardCategoryProps) => {
+const DashBoardCategory = ({category , isOpen , setisOpen , forSearch} : DashBoardCategoryProps) => {
     const numberOfWidgets = category.Widgets.length;
     const placeholders = 3 - numberOfWidgets;
     return ( 
@@ -21,7 +22,7 @@ const DashBoardCategory = ({category , isOpen , setisOpen} : DashBoardCategoryPr
                         <Widget categoryId={category.id} widgetData={widget} isOpen={isOpen} setisOpen={setisOpen} />
                     ) )
                 }
-                {Array.from({ length: placeholders }, (_, index) => (
+                {!forSearch && Array.from({ length: placeholders }, (_, index) => (
                     <Widget categoryId={category.id} key={`placeholder-${index}`} widgetData={null} isOpen={isOpen} setisOpen={setisOpen} />
                 ))}
             </div>

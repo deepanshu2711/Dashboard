@@ -3,10 +3,15 @@ import DashBoardCategory from "./DashboardCategory";
 import DashboardContentHeader from "./DashboardContentHeader";
 import Data from "../data.json"
 import { useEffect, useState } from "react";
-import { CategoryType } from "../types";
+import { CategoryType, WidgetType } from "../types";
 import { RxCross2 } from "react-icons/rx";
+import Widget from "./Widget";
 
-const DashboardContent1 = () => {
+interface DashboardContentProps {
+        searchQuery: string;
+    }
+
+const DashboardContent1 = ({searchQuery}:DashboardContentProps) => {
     const [categoryData , setCategoryData] = useState<CategoryType[]>(Data)
     const [isOpen , setisOpen] = useState(false)
     const [activeCategoryId , setActiveCategoryId] = useState(0)
@@ -14,6 +19,7 @@ const DashboardContent1 = () => {
     const [newWidgetText , setnewWidgetText] = useState("")
     const [newWidgetName , setnewWidgetName] = useState("")
     const [widgetsToRemove , setWidgetsToremove] = useState<number[]>([])
+    const [searchResults , setSearchResults] = useState<WidgetType[]>([])
     
     useEffect(() => {
         const active = categoryData.find((category) => category.id === activeCategoryId)
@@ -77,13 +83,39 @@ const DashboardContent1 = () => {
         setActiveCategoryId(id)
     }
 
+    useEffect(() => {
+        const allWidgets = categoryData.map((category) => category.Widgets).flat()
+        const searchResults = allWidgets.filter((widget) => widget.name.toLowerCase().includes(searchQuery.toLowerCase()))
+        setSearchResults(searchResults)
+    }, [searchQuery , categoryData])
+
     return ( 
-        <div className="bg-blue-50 py-8 px-5 md:px-10 flex flex-col gap-10 ">
+        <div className="bg-blue-50 py-8 px-5 md:px-10 flex flex-col gap-10 mt-16 md:mt-10">
+
+            {
+                searchQuery && (
+                    <div className="">
+                        <div className="fixed inset-0 bg-black opacity-60" />
+                        <div className="fixed top-12 pt-10 md:pt-0 right-0 min-h-[100%] md:min-h-[50%] h-auto left-0 bg-white px-5 md:px-10 md:pb-10">
+                            <div className="grid grid-cols-2 md:grid-cols-3">
+                            {
+                                searchResults.map((widget) => (
+                                    <Widget setisOpen={handleOpen} widgetData={widget} />
+                                ))
+                            }
+                            </div>
+                        </div>
+                    </div>
+
+                )
+            }
+
+
             {
                 isOpen && (
                     <>
-                        <div className="fixed inset-0 bg-black opacity-60" />
-                        <div className="fixed top-0 bottom-0 right-0 w-[100%]  md:w-[50%] lg:w-[35%] bg-white z-10">
+                        <div className="fixed inset-0 bg-black opacity-60 z-20" />
+                        <div className="fixed top-0 bottom-0 right-0 w-[100%]  md:w-[50%] lg:w-[35%] bg-white z-50">
                             <div className="bg-blue-800 p-2 flex items-center justify-between">
                                 <p className="font-semibold text-[14px] text-white">Add widget</p>
                                 <RxCross2 onClick={() => setisOpen(false)} className="text-white cursor-pointer" />
@@ -149,7 +181,7 @@ const DashboardContent1 = () => {
             <div className="flex flex-col gap-5">
                 {
                     categoryData.map((category:CategoryType) => (
-                        <DashBoardCategory key={category.id} isOpen={isOpen} setisOpen={handleOpen} category={category} />
+                        <DashBoardCategory forSearch={false} key={category.id} isOpen={isOpen} setisOpen={handleOpen} category={category} />
                     ))
                 }               
             </div>       

@@ -1,16 +1,16 @@
 [
     {
         "id":0,
-        "CategoryName" : "Category 1",
+        "CategoryName" : "CSPM Dashboard",
         "Widgets":[
             {
                 "id":0,
-                "name":"Widget name",
-                "text" :"Some random Widget text."
+                "name":"Cloud Accounts",
+                "text" :"These are cloud accounts."
             },
             {
                 "id":1,
-                "name":"Widget name",
+                "name":"Cloud Accounts Risk Assessments",
                 "text" :"Some random Widget text."
             }
         ]
@@ -18,16 +18,16 @@
     },
     {
         "id":1,
-        "CategoryName" : "Category 2",
+        "CategoryName" : "CWPP Dashboard",
         "Widgets":[
             {
                 "id":0,
-                "name":"Widget name",
+                "name":"Top 3 name space",
                 "text" :"Some random Widget text."
             },
             {
                 "id":1,
-                "name":"Widget name",
+                "name":"WorkLoad Alert",
                 "text" :"Some random Widget text."
             }
         ]
